@@ -15,12 +15,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="space-between|center_vertical"
+            android:gravity="center_vertical"
             android:padding="8dp">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="Halo\nAdmin"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp"
@@ -69,35 +70,41 @@
                 android:layout_height="wrap_content"
                 android:textColor="#FFFFFF"
                 android:text="Your Name Ahmad" />
-            <TextView
-                android:layout_width="2dp"
-                android:layout_height="5dp"
-                android:text="Your Band Name  The Abidin"
-                android:textColor="#FFFFFF" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#FFFFFF"
-                android:text="Date            Sunday, 15 Des 2024" />
+                android:text="Your Band Name The Abidin" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Time Start      09.00"
+                android:textColor="#FFFFFF"
+                android:text="Date Sunday, 15 Des 2024" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Time Start 09.00"
                 android:textColor="#FFFFFF"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Duration        1 hours"
+                android:text="Duration 1 hour"
                 android:textColor="#FFFFFF"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Note            Tak pakai sambal"
+                android:text="Note Tak pakai sambal"
                 android:textColor="#FFFFFF"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Total Payment   Rp100.000"
+                android:text="Total Payment Rp100.000"
                 android:textColor="#FFFFFF"/>
 
             <!-- Proof Image Placeholder -->
@@ -136,34 +143,5 @@
                 android:textColor="#FFFFFF" />
         </LinearLayout>
 
-        <!-- Bottom Nav (optional) -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:paddingTop="16dp"
-            android:layout_marginTop="32dp">
-
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:src="@drawable/ic_home"
-                android:contentDescription="Home" />
-
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginStart="32dp"
-                android:src="@drawable/ic_clipboard"
-                android:contentDescription="Booking" />
-
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginStart="32dp"
-                android:src="@drawable/ic_profile"
-                android:contentDescription="Profile" />
-        </LinearLayout>
     </LinearLayout>
 </ScrollView>

@@ -11,12 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="space-between|center_vertical"
+        android:gravity="center_vertical"
         android:padding="8dp">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="Halo\nThe Abidin"
             android:textColor="#4E2600"
             android:textSize="18sp"
@@ -164,38 +165,6 @@
             android:background="#2E1A09"
             android:textStyle="bold"
             android:layout_marginBottom="4dp" />
-    </LinearLayout>
-
-    <!-- Bottom Navigation (optional) -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:paddingTop="12dp">
-
-        <ImageView
-            android:id="@+id/iconHome"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:src="@drawable/ic_home"
-            android:contentDescription="Home" />
-
-        <ImageView
-            android:id="@+id/iconBooking"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginStart="32dp"
-            android:src="@drawable/ic_clipboard"
-            android:contentDescription="Booking" />
-
-        <ImageView
-            android:id="@+id/iconProfile"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginStart="32dp"
-            android:src="@drawable/ic_profile"
-            android:contentDescription="Profile" />
     </LinearLayout>
 
 </LinearLayout>
