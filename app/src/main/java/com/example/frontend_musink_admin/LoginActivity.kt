@@ -3,6 +3,9 @@ package com.example.frontend_musink_admin
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
 
@@ -18,8 +21,44 @@ class LoginActivity : AppCompatActivity() {
         loginButton.setOnClickListener {
             val user = username.text.toString()
             val pass = password.text.toString()
+
             if (user.isNotEmpty() && pass.isNotEmpty()) {
-                Toast.makeText(this, "Login berhasil", Toast.LENGTH_SHORT).show()
+                val request = LoginRequest(user, pass)
+
+                ApiClient.instance.login(request).enqueue(object : Callback<LoginResponse> {
+                    override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                        if (response.isSuccessful) {
+                            val loginResponse = response.body()
+                            if (loginResponse?.status == 200) {
+                                val userData = loginResponse.data
+                                Toast.makeText(
+                                    this@LoginActivity,
+                                    "Selamat datang, ${userData.username}",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+
+                                // TODO: Pindah ke halaman lain (jika ada)
+                                // val intent = Intent(this@LoginActivity, HomeActivity::class.java)
+                                // startActivity(intent)
+                                // finish()
+
+                            } else {
+                                Toast.makeText(
+                                    this@LoginActivity,
+                                    loginResponse?.message ?: "Login gagal",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        } else {
+                            Toast.makeText(this@LoginActivity, "Login gagal (code: ${response.code()})", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+
+                    override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                        Toast.makeText(this@LoginActivity, "Terjadi kesalahan: ${t.localizedMessage}", Toast.LENGTH_SHORT).show()
+                    }
+                })
+
             } else {
                 Toast.makeText(this, "Isi semua data", Toast.LENGTH_SHORT).show()
             }
