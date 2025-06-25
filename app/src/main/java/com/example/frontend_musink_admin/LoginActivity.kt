@@ -1,11 +1,9 @@
 package com.example.frontend_musink_admin
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
 
@@ -19,48 +17,20 @@ class LoginActivity : AppCompatActivity() {
         val googleButton = findViewById<Button>(R.id.btnGoogle)
 
         loginButton.setOnClickListener {
-            val user = username.text.toString()
-            val pass = password.text.toString()
+            val user = username.text.toString().trim()
+            val pass = password.text.toString().trim()
 
-            if (user.isNotEmpty() && pass.isNotEmpty()) {
-                val request = LoginRequest(user, pass)
-
-                ApiClient.instance.login(request).enqueue(object : Callback<LoginResponse> {
-                    override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
-                        if (response.isSuccessful) {
-                            val loginResponse = response.body()
-                            if (loginResponse?.status == 200) {
-                                val userData = loginResponse.data
-                                Toast.makeText(
-                                    this@LoginActivity,
-                                    "Selamat datang, ${userData.username}",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-
-                                // TODO: Pindah ke halaman lain (jika ada)
-                                // val intent = Intent(this@LoginActivity, HomeActivity::class.java)
-                                // startActivity(intent)
-                                // finish()
-
-                            } else {
-                                Toast.makeText(
-                                    this@LoginActivity,
-                                    loginResponse?.message ?: "Login gagal",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
-                        } else {
-                            Toast.makeText(this@LoginActivity, "Login gagal (code: ${response.code()})", Toast.LENGTH_SHORT).show()
-                        }
-                    }
-
-                    override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                        Toast.makeText(this@LoginActivity, "Terjadi kesalahan: ${t.localizedMessage}", Toast.LENGTH_SHORT).show()
-                    }
-                })
-
-            } else {
+            if (user.isEmpty() || pass.isEmpty()) {
                 Toast.makeText(this, "Isi semua data", Toast.LENGTH_SHORT).show()
+            } else if (user == "admin@gmail.com" && pass == "Admin123") {
+                Toast.makeText(this, "Login berhasil sebagai Admin", Toast.LENGTH_SHORT).show()
+
+                // Pindah ke halaman AdminBookingActivity
+                val intent = Intent(this, AdminBookingActivity::class.java)
+                startActivity(intent)
+                finish() // Menutup LoginActivity supaya tidak bisa balik dengan tombol back
+            } else {
+                Toast.makeText(this, "Username atau password salah", Toast.LENGTH_SHORT).show()
             }
         }
 
